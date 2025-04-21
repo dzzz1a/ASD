@@ -1,5 +1,4 @@
 #include <iostream>
-
 using namespace std;
 
 class Node {
@@ -15,7 +14,6 @@ public:
         return iData;
     }
 };
-
 class Heap {
 private:
     Node** heapArray;
@@ -28,15 +26,12 @@ public:
         currentSize = 0;
         heapArray = new Node*[maxSize + 1];
     }
-
     bool isEmpty() {
         return currentSize == 0;
     }
-
     bool isFull() {
         return currentSize == maxSize;
     }
-
     bool insert(int key) {
         if (isFull()) {
             return false;
@@ -46,7 +41,6 @@ public:
         trickleUp(currentSize);
         return true;
     }
-
     void trickleUp(int index) {
         int parent = index / 2;
         Node* bottom = heapArray[index];
@@ -58,7 +52,6 @@ public:
         }
         heapArray[index] = bottom;
     }
-
     Node* remove() {
         if (isEmpty()) {
             return NULL;
@@ -121,20 +114,15 @@ public:
 int main() {
     int arr[] = {12, 3, 5, 7, 19, 1, 8, 15, 4, 11, 6, 9, 14};
     int size = sizeof(arr) / sizeof(arr[0]);
-
     Heap heap(size + 1);
-
     for (int i = 0; i < size; ++i) {
         heap.insert(arr[i]);
     }
-
     cout << "Min-heap: ";
     heap.displayHeap();
-
     heap.insert(2);
     cout << "Min-heap after inserting 2: ";
     heap.displayHeap();
-
     int sortedDec[14];
     heap.heapSort(sortedDec, false);
     cout << "Heap Sort in Decreasing Order: ";
@@ -142,7 +130,6 @@ int main() {
         cout << sortedDec[i] << " ";
     }
     cout << endl;
-
     int sortedAsc[14];
     heap.heapSort(sortedAsc, true);
     cout << "Heap Sort in Ascending Order: ";
@@ -150,13 +137,7 @@ int main() {
         cout << sortedAsc[i] << " ";
     }
     cout << endl;
-
-    cout << "Priority Queue 1: " << heap.remove()->getKey() << endl;
-
     cout << "Min-heap after delete section: ";
     heap.displayHeap();
-
-    cout << "Priority Queue 2: " << heap.remove()->getKey() << endl;
-
     return 0;
 }
