@@ -1,5 +1,3 @@
-// AVL tree implementation in C++
-
 #include <iostream>
 using namespace std;
 
@@ -13,7 +11,6 @@ class Node {
 
 int max(int a, int b);
 
-// Calculate height
 int height(Node *N) {
   if (N == NULL)
     return 0;
@@ -24,7 +21,6 @@ int max(int a, int b) {
   return (a > b) ? a : b;
 }
 
-// New node creation
 Node *newNode(int key) {
   Node *node = new Node();
   node->key = key;
@@ -34,7 +30,6 @@ Node *newNode(int key) {
   return (node);
 }
 
-// Rotate right
 Node *rightRotate(Node *y) {
   Node *x = y->left;
   Node *T2 = x->right;
@@ -49,7 +44,6 @@ Node *rightRotate(Node *y) {
   return x;
 }
 
-// Rotate left
 Node *leftRotate(Node *x) {
   Node *y = x->right;
   Node *T2 = y->left;
@@ -64,7 +58,6 @@ Node *leftRotate(Node *x) {
   return y;
 }
 
-// Get the balance factor of each node
 int getBalanceFactor(Node *N) {
   if (N == NULL)
     return 0;
@@ -72,9 +65,7 @@ int getBalanceFactor(Node *N) {
        height(N->right);
 }
 
-// Insert a node
 Node *insertNode(Node *node, int key) {
-  // Find the correct postion and insert the node
   if (node == NULL)
     return (newNode(key));
   if (key < node->key)
@@ -84,8 +75,6 @@ Node *insertNode(Node *node, int key) {
   else
     return node;
 
-  // Update the balance factor of each node and
-  // balance the tree
   node->height = 1 + max(height(node->left),
                height(node->right));
   int balanceFactor = getBalanceFactor(node);
@@ -108,7 +97,6 @@ Node *insertNode(Node *node, int key) {
   return node;
 }
 
-// Node with minimum value
 Node *nodeWithMimumValue(Node *node) {
   Node *current = node;
   while (current->left != NULL)
@@ -116,7 +104,6 @@ Node *nodeWithMimumValue(Node *node) {
   return current;
 }
 
-// Delete a node
 Node *deleteNode(Node *root, int key) {
   // Find the node and delete it
   if (root == NULL)
@@ -146,8 +133,6 @@ Node *deleteNode(Node *root, int key) {
   if (root == NULL)
     return root;
 
-  // Update the balance factor of each node and
-  // balance the tree
   root->height = 1 + max(height(root->left),
                height(root->right));
   int balanceFactor = getBalanceFactor(root);
@@ -170,7 +155,6 @@ Node *deleteNode(Node *root, int key) {
   return root;
 }
 
-// Print the tree
 void printTree(Node *root, string indent, bool last) {
   if (root != nullptr) {
     cout << indent;
